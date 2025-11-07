@@ -67,29 +67,55 @@
                 // Modificacion de numeros
                 while (a)
                 {
-                    Console.WriteLine("Ingrese la posicion del numero que desea cambiar (1, 2 o 3): \nENTER para omitir...");
-                    int.TryParse(Console.ReadLine(), out int elmposicion);
-                    if (elmposicion < 0 || elmposicion > 3)
+                    Console.WriteLine("Ingrese la opcion deseada:");
+                    Console.WriteLine("1. Cambiar un numero de la lista");
+                    Console.WriteLine("2. Salir");
+                    int opcion = Revision();
+                    switch (opcion)
                     {
-                        Console.WriteLine("Posicion fuera de rango. Intente de nuevo.");
-                    }
-                    else if (elmposicion == 0)
-                    {
-                        Console.WriteLine("Saliendo del programa...");
-                        a = false;
-                    }
-                    else
-                    {
-                        // Cambiar numero en la posicion indicada
-                        Console.WriteLine("Numero eliminado... Ingrese el nuevo numero: ");
-                        int nuevonumero = int.Parse(Console.ReadLine());
-                        numeros[elmposicion - 1] = nuevonumero;
+                        case 1:
+                            Console.WriteLine("\nIngrese la posicion del numero que desea cambiar (1, 2 o 3): \n");
+                            int elmposicion = Revision();
+                            if (elmposicion < 0 || elmposicion > 3)
+                            {
+                                Console.WriteLine("Posicion fuera de rango. Intente de nuevo.\n");
+                            }
+                            else
+                            {
+                                // Cambiar numero en la posicion indicada
+                                Console.WriteLine("Numero eliminado... Ingrese el nuevo numero: ");
+                                int.TryParse(Console.ReadLine(), out int nuevonumero);
+                                while (true)
+                                {
+                                    if (nuevonumero == 0)
+                                    {
+                                        Console.WriteLine("Ingrese un numero valido...");
+                                    }
+                                    else
+                                    {
+                                        numeros[elmposicion - 1] = nuevonumero;
+                                        break;
+                                    }
+                                }
+                            }
+                            break;
+                        case 2:
+                            Console.WriteLine("Saliendo del programa...");
+                            a = false;
+                            break;
 
-                        for (int i = 0; i < numeros.Count(); i++)
+
+                            break;
+                        default:
+                            Console.WriteLine("Opcion no valida. Intente de nuevo.\n");
+                            break;
+                    }
+
+                    for (int i = 0; i < numeros.Count(); i++)
                         {
                             Console.WriteLine($"{i + 1}. {numeros[i]}");
                         }
-                    }
+                    
                 }
                 // Lista Final
                 Console.WriteLine("Lista final de numeros:");
