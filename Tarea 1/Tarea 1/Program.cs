@@ -43,21 +43,26 @@
             try
             {
                 List<int> numeros = new List<int>();
-                Console.WriteLine("Ingrese una lista de numeros...\n");
-
+                Console.WriteLine("Ingrese la cantidad de numeros que desea...\n");
+                int cantidad = Revision();
                 // Ingreso de numeros
-                Console.Write("Ingrese el primer numero: ");
-                int num1 = Revision();
-                numeros.Add(num1);
-
-                Console.Write("Ingrese el segundo numero: ");
-                int num2 = Revision();
-                numeros.Add(num2);
-
-                Console.Write("Ingrese el tercer numero: ");
-                int num3 = Revision();
-                numeros.Add(num3);
-
+                for (int i = 0; i < cantidad; i++)
+                {
+                    Console.WriteLine($"Ingrese el numero {i + 1}: ");
+                    int numero = Revision();
+                    while (true)
+                    {
+                        if (numero == 0)
+                        {
+                            Console.WriteLine("Ingrese un numero valido...");
+                        }
+                        else
+                        {
+                            numeros.Add(numero);
+                            break;
+                        }
+                    }
+                }
                 // Mostrar lista inicial
                 for (int i = 0; i < numeros.Count(); i++)
                 {
@@ -74,9 +79,9 @@
                     switch (opcion)
                     {
                         case 1:
-                            Console.WriteLine("\nIngrese la posicion del numero que desea cambiar (1, 2 o 3): \n");
+                            Console.WriteLine("\nIngrese la posicion del numero que desea cambiar: \n");
                             int elmposicion = Revision();
-                            if (elmposicion < 0 || elmposicion > 3)
+                            if (elmposicion < 0 || elmposicion > cantidad)
                             {
                                 Console.WriteLine("Posicion fuera de rango. Intente de nuevo.\n");
                             }
