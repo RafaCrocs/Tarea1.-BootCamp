@@ -24,21 +24,6 @@
 
         static void Main(string[] args)
         {
-            // Codigo que pregunte por numeros aleatorios y los ponga en una lista
-            // luego se le solicita al usuario un el numero de la posiciones de la lista
-            // Sumaria los nuemros de la posicion correspondiente
-
-            // Tomar en cuenta errores como lestras, numeros fuera de rango, espacios vacios, etc.
-
-            /*
-            O tambien podemos preguntar por nombres, luego pedir las edades de cada uno y luego imprimrlas una por una.
-            */
-
-
-
-            /*
-            Recordar el TryParse, Listas, manejo de errores con try catch, ciclos, condicionales, etc.
-            */
             bool a = true;
             try
             {
@@ -64,6 +49,7 @@
                     }
                 }
                 // Mostrar lista inicial
+                Console.WriteLine("\nLista seleccionada:");
                 for (int i = 0; i < numeros.Count(); i++)
                 {
                     Console.WriteLine($"{i + 1}. {numeros[i]}");
@@ -79,7 +65,7 @@
                     switch (opcion)
                     {
                         case 1:
-                            Console.WriteLine("\nIngrese la posicion del numero que desea cambiar: \n");
+                            Console.WriteLine("\nIngrese la posicion del numero que desea cambiar:");
                             int elmposicion = Revision();
                             if (elmposicion < 0 || elmposicion > cantidad)
                             {
@@ -89,9 +75,9 @@
                             {
                                 // Cambiar numero en la posicion indicada
                                 Console.WriteLine("Numero eliminado... Ingrese el nuevo numero: ");
-                                int.TryParse(Console.ReadLine(), out int nuevonumero);
                                 while (true)
                                 {
+                                    int.TryParse(Console.ReadLine(), out int nuevonumero);
                                     if (nuevonumero == 0)
                                     {
                                         Console.WriteLine("Ingrese un numero valido...");
@@ -99,13 +85,18 @@
                                     else
                                     {
                                         numeros[elmposicion - 1] = nuevonumero;
+                                        Console.WriteLine("\nLista Modificada:");
+                                        for (int i = 0; i < numeros.Count(); i++)
+                                        {
+                                            Console.WriteLine($"{i + 1}. {numeros[i]}");
+                                        }
                                         break;
                                     }
                                 }
                             }
                             break;
                         case 2:
-                            Console.WriteLine("Saliendo del programa...");
+                            Console.WriteLine("\nSaliendo del programa...");
                             a = false;
                             break;
 
@@ -116,15 +107,12 @@
                             break;
                     }
 
-                    for (int i = 0; i < numeros.Count(); i++)
-                        {
-                            Console.WriteLine($"{i + 1}. {numeros[i]}");
-                        }
+                    
                     
                 }
                 // Lista Final
-                Console.WriteLine("Lista final de numeros:");
-                for (int i = 0; i < 3; i++)
+                Console.WriteLine("\nLista final de numeros:");
+                for (int i = 0; i < numeros.Count; i++)
                 {
                     Console.WriteLine($"{i + 1}. {numeros[i]}");
                 }
