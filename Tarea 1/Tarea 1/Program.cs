@@ -8,15 +8,13 @@
         {
             while (true)
             {
-                int.TryParse(Console.ReadLine(), out int y);
-                if (y == 0)
+                if (!int.TryParse(Console.ReadLine(), out int y))
                 {
                     Console.WriteLine("Ingrese un numero valido...");
                 }
                 else
                 {
                     return y;
-                    break;
                 }
             }
         }
@@ -35,18 +33,7 @@
                 {
                     Console.WriteLine($"Ingrese el numero {i + 1}: ");
                     int numero = Revision();
-                    while (true)
-                    {
-                        if (numero == 0)
-                        {
-                            Console.WriteLine("Ingrese un numero valido...");
-                        }
-                        else
-                        {
-                            numeros.Add(numero);
-                            break;
-                        }
-                    }
+                    numeros.Add(numero);
                 }
                 // Mostrar lista inicial
                 Console.WriteLine("\nLista seleccionada:");
@@ -77,13 +64,14 @@
                                 Console.WriteLine("Numero eliminado... Ingrese el nuevo numero: ");
                                 while (true)
                                 {
-                                    int.TryParse(Console.ReadLine(), out int nuevonumero);
-                                    if (nuevonumero == 0)
+                                    
+                                    if (!int.TryParse(Console.ReadLine(), out int nuevonumero))
                                     {
                                         Console.WriteLine("Ingrese un numero valido...");
                                     }
                                     else
                                     {
+                                        Console.Clear();
                                         numeros[elmposicion - 1] = nuevonumero;
                                         Console.WriteLine("\nLista Modificada:");
                                         for (int i = 0; i < numeros.Count(); i++)
@@ -106,11 +94,9 @@
                             Console.WriteLine("Opcion no valida. Intente de nuevo.\n");
                             break;
                     }
-
-                    
-                    
                 }
                 // Lista Final
+                Console.Clear();
                 Console.WriteLine("\nLista final de numeros:");
                 for (int i = 0; i < numeros.Count; i++)
                 {
